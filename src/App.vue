@@ -15,9 +15,6 @@ a {
   color: $color;
 }
 #app {
-  div{
-    background: rgb(129, 129, 129);
-  }
   ::v-deep a {
     color: rgb(196, 50, 140)
   }
