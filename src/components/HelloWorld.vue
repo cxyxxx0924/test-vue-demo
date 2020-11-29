@@ -7,6 +7,7 @@
       <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
     </p>
     <h3>Installed CLI Plugins</h3>
+    <span :class="[$style.red, $style.bold]">test</span>
     <ul>
       <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
       <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
@@ -31,11 +32,22 @@
 </template>
 
 <script>
+import { getCourses } from "@/api/getCourses";
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
-  }
+  },
+  data() {
+    return {
+      courses: ''
+    }
+  },
+  async created () {
+    console.log(this.$style.red);
+    this.courses = await getCourses();
+    console.log(this.courses);
+  },
 }
 </script>
 
@@ -54,5 +66,15 @@ li {
 }
 a {
   color: #42b983;
+}
+</style>
+
+<style module lang='scss'>
+.red {
+  color: #f00;
+}
+
+.bold {
+  font-weight: bold;
 }
 </style>
