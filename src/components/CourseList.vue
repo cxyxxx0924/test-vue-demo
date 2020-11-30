@@ -29,6 +29,7 @@ export default {
       selectCourse: "",
     };
   },
+  name:'coursesList',
   watch: {
     route: {
       immediate: true,

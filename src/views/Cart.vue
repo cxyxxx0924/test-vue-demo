@@ -1,9 +1,7 @@
 <template>
   <div>
     <h2 v-bind:title="title">{{ title }}</h2>
-
     <course-list :courses='courses'></course-list>
-    
   </div>
 </template>
 
@@ -17,6 +15,7 @@ export default {
       title: "开课吧，cart",
     };
   },
+  name: 'cart',
   components: {
     CourseList,
   },

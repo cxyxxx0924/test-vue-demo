@@ -3,7 +3,8 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
-      <router-link to="/cart">Cart</router-link>
+      <router-link to="/cart">Cart</router-link> |
+      <router-link :to="{name: 'Detail', params: {name: 'web'} }">Detail</router-link>
     </div>
     <router-view/>
   </div>

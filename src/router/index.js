@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import store from '../store';
 
 Vue.use(VueRouter)
 
@@ -20,16 +21,25 @@ const routes = [
   },
   {
     path: '/cart',
-    name: 'Cart',
+    name: 'cart',
     component: () => import('../views/Cart.vue'),
     children: [{
       path: ':name',
       component: () => import('../views/Detail.vue')
-    }]
+    }],
+    meta: {
+      auth: true
+    }
   },
   {
-    path:'/course/:name',
-    component:() => import('../views/Detail.vue')
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/Login.vue')
+  },
+  {
+    path: '/course/:name',
+    name: 'Detail',
+    component: () => import('../views/Detail.vue')
   },
   {
     path: '*',
@@ -43,4 +53,30 @@ const router = new VueRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  // if (to.meta.auth) {
+  //   if (window.isLogin) {
+  //     next();
+  //   } else {
+  //     next('/login?redirect=' + to.fullPath);
+  //   }
+  // } else {
+  //   next();
+  // }
+  console.log('is run router.beforeEach');
+  if (store.state.user.isLogin) {
+    
+    if (to.path === '/login') {
+      next('/');
+    } else {
+      next();
+    }
+  } else {
+    if (to.path === '/login') {
+      next();
+    } else {
+      next('/login?redirect=' + to.fullPath);
+    }
+  }
+})
 export default router

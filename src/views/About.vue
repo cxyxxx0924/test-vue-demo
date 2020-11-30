@@ -9,3 +9,10 @@
   color: red;
 }
 </style>
+
+<script>
+export default {
+  components: {
+  },
+};
+</script>
