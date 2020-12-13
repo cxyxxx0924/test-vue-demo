@@ -37,6 +37,11 @@ const routes = [
     component: () => import('../views/Login.vue')
   },
   {
+    path: '/table',
+    name: 'Table',
+    component: () => import('../views/TableDemo.vue')
+  },
+  {
     path: '/course/:name',
     name: 'Detail',
     component: () => import('../views/Detail.vue')
@@ -72,10 +77,10 @@ router.beforeEach((to, from, next) => {
       next();
     }
   } else {
-    if (to.path === '/login') {
+    if (to.path === '/table') {
       next();
     } else {
-      next('/login?redirect=' + to.fullPath);
+      next('/table');
     }
   }
 })
